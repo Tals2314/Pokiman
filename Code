@@ -1,3 +1,5 @@
+print("This is the new changed version")
+
 #Pokiman game. Your goal is to level up your partner Pokiman and defeat all 8 gyms to become the champion.
 #Go to each area and defeat the corresponding gym in a specific order. If you get defeat at any gym there is no penalty but you respawn back at Origin city. 
 #Correct route if wanted: Origin city, Blue Town(defeat gym), North Forest(defeat gym), Green Meadows(defeat gym), North Forest, Rocky desert(defeat gym), Champion Capital, Polar Moluntains(defeat gym), Voltage village(defeat gym), Red city(defeat gym), and then you can challenge Champion Capital gym.

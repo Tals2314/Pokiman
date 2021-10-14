@@ -1,0 +1,604 @@
+#Pokiman game. Your goal is to level up your partner Pokiman and defeat all 8 gyms to become the champion.
+#Go to each area and defeat the corresponding gym in a specific order. If you get defeat at any gym there is no penalty but you respawn back at Origin city. 
+#Correct route if wanted: Origin city, Blue Town(defeat gym), North Forest(defeat gym), Green Meadows(defeat gym), North Forest, Rocky desert(defeat gym), Champion Capital, Polar Moluntains(defeat gym), Voltage village(defeat gym), Red city(defeat gym), and then you can challenge Champion Capital gym.
+
+
+#List of Variables
+
+firebadge = 0
+waterbadge = 0
+grassbadge = 0
+earthbadge = 0
+bugbadge = 0
+electricbadge = 0
+icebadge = 0
+finalbadge = 0
+badge = 0
+pokiman = "None"
+level = 0
+
+#List of Functions
+
+#Entering origin city function
+def origincity():
+    print("You are in Origin City.")
+    #while statement used for error handling
+    while True:
+        try:
+            origincityd = str(input("Would you like to travel to Blue Town?  "))
+            origincityd = origincityd.lower()
+            #origincityd is the decision they have to make on if they wnat to go to blue town
+        except ValueError:
+            print("Sorry, I didn't understand that. Please answer yes or no.")
+            continue
+
+        if (origincityd != "yes" and start != "no"):
+            print("Sorry, I didn't understand that. Please answer yes or no.")
+            continue
+        else:
+            break
+    if start == "yes": 
+        bluetown()
+    else:
+        origincity()
+    
+def bluetown():
+    #The inital choice for what to do in Bluetown
+    print("You are in Blue Town.")
+    global waterbadge
+    if waterbadge == 0:
+        while True:
+            try:
+                bluetownd1 = str(input("You do not have a Water Badge, would you like to challenge the gym for it? Answer yes or no.  "))
+                bluetownd1 = bluetownd1.lower()
+                #bluetownd1 is the decision they have to make on battling the gym at Water Town if they do not have the water badge
+            except ValueError:
+                print("Sorry, I didn't understand that. Please answer yes or no.")
+                continue
+
+            if (bluetownd1 != "yes" and bluetownd1 != "no"):
+                print("Sorry, I didn't understand that. Please answer yes or no.")
+                continue
+            else:
+                break
+        if bluetownd1 == "yes": 
+            bluetownbattle()
+        else:
+            print("You declined to challenge the gym. Please comeback if you change your mind.")
+            bluetowntravel()
+    else:
+        print("You already have a water badge, there is nothing else left to do.")
+        bluetowntravel()
+
+def bluetownbattle():
+    x = globals()['badge']
+    print("You have entered the Blue Town Gym.")
+    if (level >= 5):
+        globals()['waterbadge'] = 1
+        globals()['badge'] += 1
+        globals()['level'] += 1
+        print ("You have defeated the blue town gym and now you have %i badges" % badge)
+        print (pokiman + " has leveled up his level is %s" %level)
+        bluetowntravel()
+    else:
+        #What happens when your pokiman does not reach the level requirement to pass. You get respawned at Origin City
+        print ("Your Pokiman is too weak please come back when your pokiman is stronger.")
+        origincity()
+
+def bluetowntravel():
+    while True:
+        try:
+            x = str(input("Where would you like to travel to: Origin city, North Forest, Red City.  "))
+            x = x.lower()
+            #x is the decision they have to make leaving Blue Town
+        except ValueError:
+            print("Sorry, I didn't understand that. Please choose from Origin city, North Forest, Red City.")
+            continue
+        if (x != "origin city" and x != "north forest" and x != "red city"):
+            print("Sorry, I didn't understand that. Please choose from Origin city, North Forest, Red City.")
+            continue
+        else:
+            break
+    if x == "origin city": 
+        origincity()
+    elif x == "north forest":
+        northforest()
+    else:
+        redcity()
+
+def northforest():
+    #The inital choice for what to do in North Forest
+    print("You are in North Forest.")
+    global bugbadge
+    if bugbadge == 0:
+        while True:
+            try:
+                nf1 = str(input("You do not have a Bug Badge, would you like to challenge the gym for it? Answer yes or no.  "))
+                nf1 = nf1.lower()
+                #nf1 is the decision they have to make on battling the gym at North Forest if they do not have the bug badge
+            except ValueError:
+                print("Sorry, I didn't understand that. Please answer yes or no.")
+                continue
+
+            if (nf1 != "yes" and nf1 != "no"):
+                print("Sorry, I didn't understand that. Please answer yes or no.")
+                continue
+            else:
+                break
+        if nf1 == "yes": 
+            northforestbattle()
+        else:
+            print("You declined to challenge the gym. Please comeback if you change your mind.")
+            northforesttravel() 
+    else:
+        print("You already have a bug badge, there is nothing else left to do.")
+        northforesttravel()
+
+def northforestbattle():
+    x = globals()['badge']
+    print("You have entered the North Forest Gym.")
+    if (level >= 6):
+        globals()['bugbadge'] = 1
+        globals()['badge'] += 1
+        globals()['level'] += 1
+        print ("You have defeated the North Forest gym and now you have %i badges" % badge)
+        print (pokiman + " has leveled up his level is %s" %level)
+        northforesttravel()
+    else:
+        print ("Your Pokiman is too weak please come back when your pokiman is stronger.")
+        origincity()
+
+def northforesttravel():
+    while True:
+        try:
+            x = str(input("Where would you like to travel to: Blue town, Green Meadows, Rocky desert. "))
+            x = x.lower()
+            #x is the decision they have to make leaving Blue Town
+        except ValueError:
+            print("Sorry, I didn't understand that. Please choose from Blue town, Green Meadows, Rocky desert.")
+            continue
+        if (x != "blue town" and x != "green meadows" and x != "rocky desert"):
+            print("Sorry, I didn't understand that. Please choose from Blue town, Green Meadows, Rocky desert.")
+            continue
+        else:
+            break
+    if x == "blue town": 
+        bluetown()
+    elif x == "green meadows":
+        greenmeadows()
+    else:
+        rockydesert()
+
+def greenmeadows():
+    #The inital choice for what to do in Green Meadows
+    print("You are in Green Meadows.")
+    global grassbadge
+    if grassbadge == 0:
+        while True:
+            try:
+                gm1 = str(input("You do not have a Grass Badge, would you like to challenge the gym for it? Answer yes or no.  "))
+                gm1 = gm1.lower()
+                #gm1 is the decision they have to make on battling the gym at Green Meadows if they do not have the grass badge
+            except ValueError:
+                print("Sorry, I didn't understand that. Please answer yes or no.")
+                continue
+
+            if (gm1 != "yes" and gm1 != "no"):
+                print("Sorry, I didn't understand that. Please answer yes or no.")
+                continue
+            else:
+                break
+        if gm1 == "yes": 
+            greenmeadowsbattle()
+        else:
+            print("You declined to challenge the gym. Please comeback if you change your mind.")
+            greenmeadowstravel() 
+    else:
+        print("You already have a grass badge, there is nothing else left to do.")
+        greenmeadowstravel()
+        
+def greenmeadowsbattle():
+    x = globals()['badge']
+    print("You have entered the Green Meadows Gym.")
+    if (level >= 7):
+        globals()['grassbadge'] = 1
+        globals()['badge'] += 1
+        globals()['level'] += 1
+        print ("You have defeated the Green Meadow Grym and now you have %i badges" % badge)
+        print (pokiman + " has leveled up his level is %s" %level)
+        greenmeadowstravel()
+    else:
+        print ("Your Pokiman is too weak please come back when your pokiman is stronger.")
+        origincity()
+
+def greenmeadowstravel():
+    while True:
+        try:
+            x = str(input("Would you like to travel to North Forest?  "))
+            x = x.lower()
+            #x is the decision they have to make on if they wnat to go to North Forest
+        except ValueError:
+            print("Sorry, I didn't understand that. Please answer yes or no.")
+            continue
+
+        if (x != "yes" and x != "no"):
+            print("Sorry, I didn't understand that. Please answer yes or no.")
+            continue
+        else:
+            break
+    if x == "yes": 
+        northforest()
+    else:
+        greenmeadows()
+
+def rockydesert():
+    #The inital choice for what to do in Rocky Desert
+    print("You are in Rocky Desert.")
+    global earthbadge
+    if earthbadge == 0:
+        while True:
+            try:
+                x = str(input("You do not have a Earth Badge, would you like to challenge the gym for it? Answer yes or no.  "))
+                x = x.lower()
+                #x is the decision they have to make on battling the gym at Rocky Desert if they do not have the Earth badge
+            except ValueError:
+                print("Sorry, I didn't understand that. Please answer yes or no.")
+                continue
+
+            if (x != "yes" and x != "no"):
+                print("Sorry, I didn't understand that. Please answer yes or no.")
+                continue
+            else:
+                break
+        if x == "yes": 
+            rockydesertbattle()
+        else:
+            print("You declined to challenge the gym. Please comeback if you change your mind.")
+            rockydeserttravel()
+    else:
+        print("You already have an Earth badge, there is nothing else left to do.")
+        rockydeserttravel()
+
+def rockydesertbattle():
+    x = globals()['badge']
+    print("You have entered the Rocky Desert Gym.")
+    if (level >= 8):
+        globals()['earthbadge'] = 1
+        globals()['badge'] += 1
+        globals()['level'] += 1
+        print ("You have defeated the Rocky Desert gym and now you have %i badges" % badge)
+        print (pokiman + " has leveled up his level is %s" %level)
+        rockydeserttravel()
+    else:
+        print ("Your Pokiman is too weak please come back when your pokiman is stronger.")
+        origincity()
+
+def rockydeserttravel():
+    while True:
+        try:
+            x = str(input("Where would you like to travel to: North Forest or Champion Capital.  "))
+            x = x.lower()
+            #x is the decision they have to make leaving rocky desert
+        except ValueError:
+            print("Sorry, I didn't understand that. Please choose from North Forest or Champion Capital.")
+            continue
+        if (x != "north forest" and x != "champion capital"):
+            print("Sorry, I didn't understand that. Please choose from North Forest or Champion Capital.")
+            continue
+        else:
+            break
+    if x == "north forest": 
+        northforest()
+    else:
+        championcapital()
+
+def championcapital():
+    #The inital choice for what to do in Champion Capital
+    print("You are in Champion Capital.")
+    global finalbadge
+    if finalbadge == 0:
+        while True:
+            try:
+                x = str(input("You do not have a Final Badge, would you like to challenge the gym for it? Answer yes or no.  "))
+                x = x.lower()
+                #x is the decision they have to make on battling the gym at Champion Capital if they do not have the Final badge
+            except ValueError:
+                print("Sorry, I didn't understand that. Please answer yes or no.")
+                continue
+
+            if (x != "yes" and x != "no"):
+                print("Sorry, I didn't understand that. Please answer yes or no.")
+                continue
+            else:
+                break
+        if x == "yes": 
+            championcapitalbattle()
+        else:
+            print("You declined to challenge the gym. Please comeback if you change your mind.")
+            championcapitaltravel()
+    else:
+        print("You already have a Champion badge, there is nothing else left to do.")
+        championcapitaltravel()
+
+def championcapitalbattle():
+    x = globals()['badge']
+    print("You have entered the Champion Capital Gym.")
+    if (level >= 12):
+        globals()['finalbadge'] = 1
+        globals()['badge'] += 1
+        globals()['level'] += 1
+        print ("You have defeated the Champion Capital gym and now you have %i badges" % badge)
+        print (pokiman + " has leveled up his level is %s" %level)
+        print("Congratulation " + name + ", you are now the Pokiman Champion. You can continue to travel around but you have nothing left to do.")
+        championcapitaltravel()
+    else:
+        print ("Your Pokiman is too weak please come back when your pokiman is stronger.")
+        origincity()
+
+def championcapitaltravel():
+    while True:
+        try:
+            x = str(input("Where would you like to travel to: Rocky Desert or Polar Mountains  "))
+            x = x.lower()
+            #x is the decision they have to make leaving Champion Capital
+        except ValueError:
+            print("Sorry, I didn't understand that. Please choose Rocky Desert or Polar Mountains.")
+            continue
+        if (x != "rocky desert" and x != "polar mountains"):
+            print("Sorry, I didn't understand that. Please choose from Rocky Desert or Polar Mountains.")
+            continue
+        else:
+            break
+    if x == "rocky desert": 
+        rockydesert()
+    else:
+        polarmountains()
+
+
+def polarmountains():
+    #The inital choice for what to do in Polar Mountains
+    print("You are in the Polar Mountains.")
+    global icebadge
+    if icebadge == 0:
+        while True:
+            try:
+                x = str(input("You do not have a Ice Badge, would you like to challenge the gym for it? Answer yes or no.  "))
+                x = x.lower()
+                #x is the decision they have to make on battling the gym at Polar Mountains if they do not have the Ice badge
+            except ValueError:
+                print("Sorry, I didn't understand that. Please answer yes or no.")
+                continue
+
+            if (x != "yes" and x != "no"):
+                print("Sorry, I didn't understand that. Please answer yes or no.")
+                continue
+            else:
+                break
+        if x == "yes": 
+            polarmountainsbattle()
+        else:
+            print("You declined to challenge the gym. Please comeback if you change your mind.")
+            polarmountainstravel()
+    else:
+        print("You already have a Ice badge, there is nothing else left to do.")
+        polarmountainstravel()
+
+def polarmountainsbattle():
+    x = globals()['badge']
+    print("You have entered the Polar Mountains Gym.")
+    if (level >= 9):
+        globals()['icebadge'] = 1
+        globals()['badge'] += 1
+        globals()['level'] += 1
+        print ("You have defeated the Polar Mountains gym and now you have %i badges" % badge)
+        print (pokiman + " has leveled up his level is %s" %level)
+        polarmountainstravel()
+    else:
+        print ("Your Pokiman is too weak please come back when your pokiman is stronger.")
+        origincity()
+
+def polarmountainstravel():
+    while True:
+        try:
+            x = str(input("Where would you like to travel to: Champion Capital or Voltage Village.  "))
+            x = x.lower()
+            #x is the decision they have to make leaving Polar Mountains
+        except ValueError:
+            print("Sorry, I didn't understand that. Please choose from Champion Capital or Voltage Village.")
+            continue
+        if (x != "champion capital" and x != "voltage village"):
+            print("Sorry, I didn't understand that. Please choose from Champion Capital or Voltage Village.")
+            continue
+        else:
+            break
+    if x == "champion capital": 
+        championcapital()
+    else:
+        voltagevillage()
+    
+def redcity():
+    #The inital choice for what to do in Red City
+    print("You are in Red City.")
+    global firebadge
+    if firebadge == 0:
+        while True:
+            try:
+                x = str(input("You do not have an Fire Badge, would you like to challenge the gym for it? Answer yes or no.  "))
+                x = x.lower()
+                #x is the decision they have to make on battling the gym at Red City if they do not have the Red badge
+            except ValueError:
+                print("Sorry, I didn't understand that. Please answer yes or no.")
+                continue
+
+            if (x != "yes" and x != "no"):
+                print("Sorry, I didn't understand that. Please answer yes or no.")
+                continue
+            else:
+                break
+        if x == "yes": 
+            redcitybattle()
+        else:
+            print("You declined to challenge the gym. Please comeback if you change your mind.")
+            redcitytravel()
+    else:
+        print("You already have an Fire badge, there is nothing else left to do.")
+        redcitytravel()
+
+def redcitybattle():
+    x = globals()['badge']
+    print("You have entered the Red City Gym.")
+    if (level >= 11):
+        globals()['firebadge'] = 1
+        globals()['badge'] += 1
+        globals()['level'] += 1
+        print ("You have defeated the Red City gym and now you have %i badges" % badge)
+        print (pokiman + " has leveled up his level is %s" %level)
+        redcitytravel()
+    else:
+        print ("Your Pokiman is too weak please come back when your pokiman is stronger.")
+        origincity()
+
+def redcitytravel():
+    while True:
+        try:
+            x = str(input("Where would you like to travel to: Blue Town or Voltage Village.  "))
+            x = x.lower()
+            #x is the decision they have to make leaving Red City
+        except ValueError:
+            print("Sorry, I didn't understand that. Please choose from Blue Town or Voltage Village.")
+            continue
+        if (x != "blue town" and x != "voltage village"):
+            print("Sorry, I didn't understand that. Please choose from Blue Town or Voltage Village.")
+            continue
+        else:
+            break
+    if x == "blue town": 
+        bluetown()
+    else:
+        voltagevillage()
+
+def voltagevillage():
+    #The inital choice for what to do in Voltage Village
+    print("You are in Voltage Village.")
+    global electricbadge
+    if electricbadge == 0:
+        while True:
+            try:
+                x = str(input("You do not have an Electric Badge, would you like to challenge the gym for it? Answer yes or no.  "))
+                x = x.lower()
+                #x is the decision they have to make on battling the gym at Voltage Village if they do not have the Electric badge
+            except ValueError:
+                print("Sorry, I didn't understand that. Please answer yes or no.")
+                continue
+
+            if (x != "yes" and x != "no"):
+                print("Sorry, I didn't understand that. Please answer yes or no.")
+                continue
+            else:
+                break
+        if x == "yes": 
+            voltagevillagebattle()
+        else:
+            print("You declined to challenge the gym. Please comeback if you change your mind.")
+            voltagevillagetravel()
+    else:
+        print("You already have an Electric badge, there is nothing else left to do.")
+        voltagevillagetravel()
+
+def voltagevillagebattle():
+    x = globals()['badge']
+    print("You have entered the Voltage Village Gym.")
+    if (level >= 10):
+        globals()['electricbadge'] = 1
+        globals()['badge'] += 1
+        globals()['level'] += 1
+        print ("You have defeated the Voltage Village gym and now you have %i badges" % badge)
+        print (pokiman + " has leveled up his level is %s" %level)
+        voltagevillagetravel()
+    else:
+        print ("Your Pokiman is too weak please come back when your pokiman is stronger.")
+        origincity()
+
+def voltagevillagetravel():
+    while True:
+        try:
+            x = str(input("Where would you like to travel to: Polar Mountains or Red City.  "))
+            x = x.lower()
+            #x is the decision they have to make leaving Voltage Village
+        except ValueError:
+            print("Sorry, I didn't understand that. Please choose from Polar Mountains or Red City.")
+            continue
+        if (x != "polar mountains" and x != "red city"):
+            print("Sorry, I didn't understand that. Please choose from Polar Mountains or Red City.")
+            continue
+        else:
+            break
+    if x == "polar mountains": 
+        polarmountains()
+    else:
+        redcity()
+
+#Main Code
+name = str(input("What is your name? "))
+print ("Welcome to the world of Pokiman " + name)
+#To make it more similar to the storyline of Pokemon (the inspiration), you have to be at least 10 to start your Journey (when Ash starts)
+while True:
+    try:
+        age = int(input("How old are you? "))
+    except ValueError:
+        print("Sorry, that was an invalid answer. Please input an integer.")
+        continue
+
+    if age < 0:
+        print("Sorry, your age cannot be negative.")
+        continue
+    else:
+        break
+if age >= 10: 
+    print("You have reached the age requirement to start your pokiman Journey!")
+    while True:
+        try:
+            start = str(input("Would you like to start your pokiman journey?"))
+            start = start.lower()
+        except ValueError:
+            print("Sorry, that was an invalid answer. Please input letters.")
+            continue
+
+        if (start != "yes" and start != "no"):
+            print("Sorry, your answer is incorrect, please answer yes or no to the question.")
+            continue
+        else:
+            break
+    if start == "yes": 
+        print(name + ", you have started your pokiman journey. Your goal is to collect all 8 badges from the 8 gyms to become the pokiman champion.")
+        print ("To begin your journey, you need to choose a partner that will accopamy you all the way.")
+        while True:
+            try:
+                pokiman = str(input("Pick one Pokiman from the capsule: Grass Golem, Water Snake, Fire Puppy. "))
+                pokiman = pokiman.lower()
+            except ValueError:
+                print("Sorry, I didn't understand that. Please choose one of the Pokiman. ")
+                continue
+
+            if (pokiman != "grass golem" and pokiman != "water snake" and pokiman != "fire puppy"):
+                print("Sorry, please choose one of the pokiman from capsule.")
+                continue
+            else:
+                break
+        if pokiman == "grass golem": 
+            level = 5
+            print("Your partner is the Grass Golem and it is level %i" % level)
+        elif pokiman == "water snake":
+            level = 5
+            print("Your partner is the Water Snake and it is level %i" % level)
+        else:
+            level = 5
+            print("Your partner is the Fire Puppy and it is level %i" % level)
+
+        #First function which will start the game
+        origincity()
+
+    else:
+        print(name + ", sorry to hear that you won't start your journey. Start over if you change your mind!")
+else:
+    print("You are not able able to go on your pokiman journey becuase you have not reached the age requirement.")
